@@ -1,0 +1,61 @@
+# network.toml: every network-specific setting lives here.
+#
+# To launch your own independent network, copy this file, change
+# `network_name`, put in your own `genesis_key` (or leave it empty), and point
+# `bootstrap_nodes` at your first node. No source changes are needed.
+# See docs/FORK_GUIDE.md.
+#
+# Changing any setting except `bootstrap_nodes` and `[transport]` changes the
+# network ID, which makes a new network that cannot see the old one.
+
+# Name of the network. Mixed into the network ID so networks never mix.
+network_name = "mynet"
+
+# Hex public key allowed to mint free names, or "" for none.
+# Generate it offline with: dweb-wallet keygen --out genesis.key
+genesis_key = ""
+
+# Maximum number of free names the genesis key may ever mint.
+genesis_cap = 10000
+
+# Optional taper: after `after_days` from launch the cap becomes `cap`.
+# Setting the cap to the number already minted stops new free names.
+# genesis_schedule = [
+#   { after_days = 365, cap = 5000 },
+#   { after_days = 730, cap = 0 },
+# ]
+
+# Unix time of launch. The taper schedule counts from here.
+launch_time = 0
+
+# How long a name lasts before it must be renewed.
+expiry_days = 365
+
+# Registry nodes new peers connect to first.
+bootstrap_nodes = ["http://127.0.0.1:7700"]
+
+# Proof-of-work cost curve. Each extra bit doubles the work.
+[pow_curve]
+op_bits = 8               # every operation (anti-spam)
+commit_bits = 12          # the hidden commit step
+base_bits = 22            # a name of short_name_length characters or more
+short_name_length = 8
+extra_bits_per_char = 2   # added per character below short_name_length
+# Exact overrides by name length:
+# length_bits = { "1" = 40, "2" = 38 }
+
+[name_rules]
+min_length = 1
+max_length = 63
+allowed_chars = "abcdefghijklmnopqrstuvwxyz0123456789-."
+
+[registration]
+reveal_min_delay_secs = 600   # must be greater than max_clock_skew_secs
+reveal_window_secs = 86400
+max_clock_skew_secs = 300
+
+# How wallets, nodes and resolvers reach the network: direct, tor or i2p.
+# Not part of the network ID: each user can choose their own.
+[transport]
+mode = "direct"
+# socks_proxy = "127.0.0.1:9050"

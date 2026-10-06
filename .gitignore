@@ -1,0 +1,5 @@
+/target
+/dist
+*.key
+*.pending-*.json
+node-data/

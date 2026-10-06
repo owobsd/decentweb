@@ -1,0 +1,32 @@
+[package]
+name = "dweb-net"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow = "1.0.104"
+axum = "0.8.9"
+bytes = "1.12.1"
+clap = { version = "4.6.7", features = ["derive", "env"] }
+dweb-protocol = { version = "0.1.0", path = "../dweb-protocol" }
+futures-util = "0.3.34"
+getrandom = "0.4.3"
+hex = "0.4.3"
+http-body-util = "0.1.5"
+hyper = { version = "1.11.1", features = ["full"] }
+hyper-util = { version = "0.1.21", features = ["full"] }
+rcgen = { version = "0.14.10", default-features = false, features = ["ring", "pem", "crypto"] }
+reqwest = { version = "0.13.5", default-features = false, features = ["json", "socks", "rustls-no-provider"] }
+rustls = { version = "0.23.45", default-features = false, features = ["ring", "std", "logging"] }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+tokio = { version = "1.53.2", features = ["full"] }
+tokio-rustls = { version = "0.26.6", default-features = false, features = ["ring", "logging"] }
+tower = { version = "0.5.3", features = ["util"] }
+tower-http = { version = "0.7.1", features = ["fs"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+x509-parser = "0.18.1"

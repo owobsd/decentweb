@@ -1,0 +1,18 @@
+[package]
+name = "dweb-wallet"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow = "1.0.104"
+clap = { version = "4.6.7", features = ["derive", "env"] }
+dweb-net = { version = "0.1.0", path = "../dweb-net" }
+dweb-protocol = { version = "0.1.0", path = "../dweb-protocol" }
+getrandom = "0.4.3"
+hex = "0.4.3"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+tokio = { version = "1.53.2", features = ["full"] }
